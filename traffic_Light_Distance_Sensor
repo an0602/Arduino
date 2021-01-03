@@ -1,0 +1,39 @@
+const int BLED = 11;            //blue LED on pin 11
+const int GLED = 10;            //green LED on pin 10
+const int RLED = 9;             //red LED on pin 9
+const int IRPIN = A0;           //analog input on A0
+
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);           //set baud rate
+  pinMode(BLED, OUTPUT);
+  pinMode(GLED, OUTPUT);
+  pinMode(RLED, OUTPUT);
+}
+
+void loop() {
+
+  float volts = analogRead(IRPIN) * 0.0048828125;     //get value from sensor multiplied by (5/1024)
+  float distance = 27*pow(volts, -1.10);              //worked out from sensor datasheet for Sharp GP2Y0A21 IR Distance Sensor
+  Serial.println(distance);                           //print serial data
+  delay(500);                                         //delay 500ms
+
+if (distance > 30) {                                  //if distance > 30, LED is green
+    analogWrite(RLED, 0);
+    analogWrite(GLED, 150);
+    analogWrite(BLED, 0);
+  } 
+  else if (distance <= 30 && distance > 20) {         //in this range, LED is yellow
+    
+    analogWrite(RLED, 150);
+    analogWrite(GLED, 75);
+    analogWrite(BLED, 0);
+  }
+  else if (distance <= 20) {                        //in this range, LED is red
+    analogWrite(RLED, 255);
+    analogWrite(GLED, 0);
+    analogWrite(BLED, 0);
+  } 
+ 
+}
