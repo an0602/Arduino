@@ -1,12 +1,5 @@
 //Lights Out Game by Ayaz Noor
-/*
- Now we need a LedControl to work with.
- ***** These pin numbers will probably not work with your hardware *****
- pin 12 is connected to the DataIn 
- pin 11 is connected to the CLK 
- pin 10 is connected to LOAD 
- We have only a single MAX72XX.
- */
+
 
 #include "LedControl.h"
 #include "pitches.h"
@@ -14,7 +7,7 @@
 
 LedControl lc=LedControl(12,10,11,1);
 
-/* we always wait a bit between updates of the display */
+
 unsigned long delaytime=100;
 const byte ROWS = 4; //four rows
 const byte COLS = 4; //four columns
@@ -36,9 +29,8 @@ int nine_flag = 0;
 int win_flag = 0;
 
 byte rowPins[ROWS] = {5, 4, 3, 2}; //connect to the row pinouts of the keypad
-//byte rowPins[ROWS] = {5, 4, 3}; //connect to the row pinouts of the keypad
 byte colPins[COLS] = {9, 8, 7, 6}; //connect to the column pinouts of the keypad
-//byte colPins[COLS] = {9, 8, 7}; //connect to the column pinouts of the keypad
+
 
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
