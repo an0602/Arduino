@@ -2,7 +2,7 @@
 
 
 #include "LedControl.h"
-#include "pitches.h"
+#include "pitches.h"    //This header file is included as an example in Arduino toneMelody program
 #include <Keypad.h>
 
 LedControl lc=LedControl(12,10,11,1);
